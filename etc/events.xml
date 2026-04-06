@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Byte8 Ltd. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    
+    <!-- Observer for message storage events -->
+    <event name="byte8_profile_message_storage_add_message">
+        <observer name="profile_notification_message_observer" 
+                  instance="Byte8\ProfileNotification\Observer\MessageStorageObserver"/>
+    </event>
+    
+    <!-- Observer for message storage bulk add -->
+    <event name="byte8_profile_message_storage_add_messages">
+        <observer name="profile_notification_message_bulk_observer" 
+                  instance="Byte8\ProfileNotification\Observer\MessageStorageObserver"/>
+    </event>
+</config>

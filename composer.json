@@ -1,0 +1,28 @@
+{
+    "name": "byte8/module-profile-notification",
+    "description": "Comprehensive notification system for Byte8 profile operations",
+    "type": "magento2-module",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Byte8 Ltd",
+            "email": "support@byte8.io"
+        }
+    ],
+    "require": {
+        "php": "~8.1.0||~8.2.0||~8.3.0||~8.4",
+        "magento/framework": "*",
+        "byte8/module-core": "*",
+        "byte8/module-profile": "*",
+        "byte8/module-profile-history": "*"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Byte8\\ProfileNotification\\": ""
+        }
+    },
+    "version": "1.0.0"
+}

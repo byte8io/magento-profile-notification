@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Byte8 Ltd. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+    <group id="default">
+        <job name="byte8_notification_cleanup"
+             instance="Byte8\ProfileNotification\Cron\CleanupOldNotifications"
+             method="execute">
+            <schedule>0 2 * * *</schedule>
+        </job>
+        <job name="byte8_notification_send_batch_emails"
+             instance="Byte8\ProfileNotification\Cron\SendBatchEmails"
+             method="execute">
+            <schedule>*/15 * * * *</schedule>
+        </job>
+        <job name="byte8_notification_mark_emailed"
+             instance="Byte8\ProfileNotification\Cron\MarkEmailedNotifications"
+             method="execute">
+            <schedule>*/5 * * * *</schedule>
+        </job>
+    </group>
+</config>
