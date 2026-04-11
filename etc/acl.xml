@@ -10,7 +10,7 @@
     <acl>
         <resources>
             <resource id="Magento_Backend::admin">
-                <resource id="Byte8_Core::byte8_core">
+                <resource id="Byte8_Core::byte8">
                     <resource id="Byte8_Profile::profile">
                         <resource id="Byte8_ProfileNotification::notification" title="Profile Notifications" translate="title" sortOrder="100">
                             <resource id="Byte8_ProfileNotification::notification_view" title="View Notifications" translate="title" sortOrder="10"/>

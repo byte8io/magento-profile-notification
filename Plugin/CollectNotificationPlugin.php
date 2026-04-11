@@ -9,7 +9,7 @@ declare(strict_types=1);
 namespace Byte8\ProfileNotification\Plugin;
 
 use Psr\Log\LoggerInterface;
-use Byte8\PlentyProfile\Model\CollectManagementInterface;
+use Byte8\PlentyCore\Profile\CollectManagementInterface;
 use Byte8\ProfileNotification\Api\NotificationManagementInterface;
 
 /**

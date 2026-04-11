@@ -38,7 +38,7 @@
 
     <!-- Collect Management Plugins -->
     <!-- Plugin for AbstractCollectManagement base class -->
-    <type name="Byte8\PlentyProfile\Model\CollectManagementInterface">
+    <type name="Byte8\PlentyCore\Profile\CollectManagementInterface">
         <plugin name="profile_notification_collect_logger"
                 type="Byte8\ProfileNotification\Plugin\CollectNotificationPlugin"
                 sortOrder="10"/>
@@ -50,44 +50,44 @@
         </arguments>
     </type>
 
-    <!--<type name="Byte8\PlentyProfile\Model\AbstractCollectManagement">
+    <!--<type name="Byte8\PlentyCore\Profile\AbstractCollectManagement">
         <plugin name="profile_notification_collect_logger"
                 type="Byte8\ProfileNotification\Plugin\CollectNotificationPlugin"
                 sortOrder="10"/>
     </type>-->
 
     <!-- Plugin for specific collect service implementations -->
-    <!--<type name="Byte8\PlentyOrderProfile\Model\OrderCollectService">
+    <!--<type name="Byte8\PlentyOrder\Profile\OrderCollectService">
         <plugin name="profile_notification_order_collect_logger"
                 type="Byte8\ProfileNotification\Plugin\CollectNotificationPlugin"
                 sortOrder="10"/>
     </type>
 
-    <type name="Byte8\PlentyItemProfile\Model\ItemCollectService">
+    <type name="Byte8\PlentyItem\Profile\ItemCollectService">
         <plugin name="profile_notification_item_collect_logger"
                 type="Byte8\ProfileNotification\Plugin\CollectNotificationPlugin"
                 sortOrder="10"/>
     </type>
 
-    <type name="Byte8\PlentyItemProfile\Model\VariationCollectService">
+    <type name="Byte8\PlentyItem\Profile\VariationCollectService">
         <plugin name="profile_notification_variation_collect_logger"
                 type="Byte8\ProfileNotification\Plugin\CollectNotificationPlugin"
                 sortOrder="10"/>
     </type>
 
-    <type name="Byte8\PlentyStockProfile\Model\StockCollectService">
+    <type name="Byte8\PlentyStock\Profile\StockCollectService">
         <plugin name="profile_notification_stock_collect_logger"
                 type="Byte8\ProfileNotification\Plugin\CollectNotificationPlugin"
                 sortOrder="10"/>
     </type>
 
-    <type name="Byte8\PlentyCustomerProfile\Model\CustomerCollectService">
+    <type name="Byte8\PlentyCustomer\Profile\CustomerCollectService">
         <plugin name="profile_notification_customer_collect_logger"
                 type="Byte8\ProfileNotification\Plugin\CollectNotificationPlugin"
                 sortOrder="10"/>
     </type>
 
-    <type name="Byte8\PlentyCategoryProfile\Model\CategoryCollectService">
+    <type name="Byte8\PlentyCategory\Profile\CategoryCollectService">
         <plugin name="profile_notification_category_collect_logger"
                 type="Byte8\ProfileNotification\Plugin\CollectNotificationPlugin"
                 sortOrder="10"/>
