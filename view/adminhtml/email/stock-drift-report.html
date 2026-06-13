@@ -1,0 +1,97 @@
+<!--
+/**
+ * Copyright © Byte8 Ltd. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<!--@subject {{trans "Stock Drift Report - %total SKU(s) out of sync with PlentyONE" total=$total}} @-->
+<!--@styles
+    body,td { color:#2f2f2f; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif; }
+@-->
+
+<table cellpadding="0" cellspacing="0" border="0" width="100%">
+    <tr>
+        <td align="center" valign="top">
+            <table bgcolor="#FFFFFF" cellpadding="10" cellspacing="0" border="0" width="780" style="border:1px solid #E0E0E0;">
+                <tr>
+                    <td valign="top">
+                        <h1 style="font-size:22px; font-weight:normal; line-height:22px; margin:0 0 11px 0;">
+                            {{trans "Stock Physical-Drift Report"}}
+                        </h1>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                            <tr>
+                                <td valign="top" style="padding:0 0 10px 0;">
+                                    <p style="font-size:12px; line-height:16px; margin:0;">
+                                        {{trans "The following SKUs have shown a physical-stock discrepancy between Magento and PlentyONE that the automatic re-sync has not cleared for at least %hours hour(s). They likely need manual review." hours=$threshold_hours}}
+                                    </p>
+                                    <p style="font-size:12px; line-height:16px; margin:10px 0 0 0;">
+                                        <strong>{{trans "Report Generated (GMT):"}} </strong> {{var generated_at}}<br/>
+                                        <strong>{{trans "Server:"}} </strong> {{var server_name}}<br/>
+                                        <strong>{{trans "SKUs out of sync:"}} </strong> {{var total}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top" style="padding:10px 0;">
+                                    <table cellpadding="5" cellspacing="0" border="0" width="100%" style="border:1px solid #ddd;">
+                                        <tr>
+                                            <td style="background-color:#f5f5f5; font-weight:bold;">{{trans "SKU"}}</td>
+                                            <td style="background-color:#f5f5f5; font-weight:bold;">{{trans "Source"}}</td>
+                                            <td style="background-color:#f5f5f5; font-weight:bold;">{{trans "Whse"}}</td>
+                                            <td style="background-color:#f5f5f5; font-weight:bold; text-align:right;">{{trans "Magento"}}</td>
+                                            <td style="background-color:#f5f5f5; font-weight:bold; text-align:right;">{{trans "Plenty"}}</td>
+                                            <td style="background-color:#f5f5f5; font-weight:bold; text-align:right;">{{trans "Δ"}}</td>
+                                            <td style="background-color:#f5f5f5; font-weight:bold; text-align:right;">{{trans "P.Resv"}}</td>
+                                            <td style="background-color:#f5f5f5; font-weight:bold; text-align:right;">{{trans "P.Net"}}</td>
+                                            <td style="background-color:#f5f5f5; font-weight:bold;">{{trans "Since (GMT)"}}</td>
+                                            <td style="background-color:#f5f5f5; font-weight:bold; text-align:right;">{{trans "Seen"}}</td>
+                                            <td style="background-color:#f5f5f5; font-weight:bold; text-align:right;">{{trans "Fixes"}}</td>
+                                        </tr>
+                                        {{for item in items}}
+                                        <tr>
+                                            <td style="border-top:1px solid #ddd; font-size:10px;">{{var item.sku}}</td>
+                                            <td style="border-top:1px solid #ddd; font-size:10px;">{{var item.source_code}}</td>
+                                            <td style="border-top:1px solid #ddd; font-size:10px;">{{var item.warehouse_id}}</td>
+                                            <td style="border-top:1px solid #ddd; font-size:10px; text-align:right;">{{var item.magento_physical}}</td>
+                                            <td style="border-top:1px solid #ddd; font-size:10px; text-align:right;">{{var item.plenty_physical}}</td>
+                                            <td style="border-top:1px solid #ddd; font-size:10px; text-align:right; color:#ff0000; font-weight:bold;">{{var item.physical_delta}}</td>
+                                            <td style="border-top:1px solid #ddd; font-size:10px; text-align:right; color:#666;">{{var item.plenty_reserved}}</td>
+                                            <td style="border-top:1px solid #ddd; font-size:10px; text-align:right; color:#666;">{{var item.plenty_net}}</td>
+                                            <td style="border-top:1px solid #ddd; font-size:10px;">{{var item.first_detected_at}}</td>
+                                            <td style="border-top:1px solid #ddd; font-size:10px; text-align:right;">{{var item.detection_count}}</td>
+                                            <td style="border-top:1px solid #ddd; font-size:10px; text-align:right;">{{var item.fix_attempt_count}}</td>
+                                        </tr>
+                                        {{/for}}
+                                    </table>
+                                    {{depend truncated}}
+                                    <p style="font-size:11px; color:#666; margin:5px 0 0 0;">
+                                        {{trans "Only the first %shown of %total rows are shown. Run 'bin/magento plenty:stock:drift:report' for the full list." shown=$shown total=$total}}
+                                    </p>
+                                    {{/depend}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top" style="padding:10px 0;">
+                                    <p style="font-size:11px; line-height:15px; color:#666; margin:0;">
+                                        {{trans "Δ = Magento physical minus Plenty physical. P.Resv / P.Net are PlentyONE reserved and net stock, shown for context only — physical is the authoritative figure. 'Seen' is how many times the discrepancy was observed; 'Fixes' is how many automatic re-sync attempts were made."}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top" style="padding:20px 0 0 0;">
+                                    <p style="font-size:12px; line-height:16px; margin:0; padding:10px; background-color:#f5f5f5; border:1px solid #ddd;">
+                                        {{trans "This is an automated report from your Mage2Plenty connector. If these discrepancies persist, please review the affected SKUs in PlentyONE and Magento."}}
+                                    </p>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>

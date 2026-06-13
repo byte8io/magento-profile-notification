@@ -36,6 +36,7 @@ class Sender implements SenderInterface
     private const EMAIL_TEMPLATE_CRITICAL_ALERT = 'profile_notification_critical_alert';
     private const EMAIL_TEMPLATE_PROCESS_SUMMARY = 'profile_notification_process_summary';
     private const EMAIL_TEMPLATE_BATCH_SUMMARY = 'profile_notification_batch_summary';
+    private const EMAIL_TEMPLATE_STOCK_DRIFT = 'profile_notification_stock_drift';
 
     private const FLAG_LAST_SUMMARY_DIGEST_PREFIX = 'byte8_notification_last_summary_digest_';
     private const MAX_DETAIL_ITEMS = 20;
@@ -281,6 +282,43 @@ class Sender implements SenderInterface
         } catch (\Exception $e) {
             $this->inlineTranslation->resume();
             $this->logger->error('Failed to send batch notification email: ' . $e->getMessage());
+        }
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function sendStockDriftReport(array $templateVars, array $recipients = []): void
+    {
+        try {
+            $recipients = $recipients ?: $this->getRecipients();
+            if (empty($recipients)) {
+                $this->logger->warning('Stock drift report: no recipients configured — email skipped.');
+                return;
+            }
+
+            $this->inlineTranslation->suspend();
+
+            $storeId = $this->storeManager->getStore()->getId();
+
+            $this->transportBuilder
+                ->setTemplateIdentifier(self::EMAIL_TEMPLATE_STOCK_DRIFT)
+                ->setTemplateOptions([
+                    'area' => 'adminhtml',
+                    'store' => $storeId
+                ])
+                ->setTemplateVars($templateVars)
+                ->setFromByScope($this->getSender())
+                ->addTo($recipients);
+
+            $transport = $this->transportBuilder->getTransport();
+            $transport->sendMessage();
+
+            $this->inlineTranslation->resume();
+
+        } catch (\Exception $e) {
+            $this->inlineTranslation->resume();
+            $this->logger->error('Failed to send stock drift report email: ' . $e->getMessage());
         }
     }
 

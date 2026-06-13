@@ -10,7 +10,7 @@
         }
     ],
     "require": {
-        "php": "~8.1.0||~8.2.0||~8.3.0||~8.4",
+        "php": "~8.1.0||~8.2.0||~8.3.0||~8.4.0||~8.5.0",
         "magento/framework": "*",
         "byte8/module-core": "*",
         "byte8/module-profile": "*"
@@ -23,5 +23,5 @@
             "Byte8\\ProfileNotification\\": ""
         }
     },
-    "version": "1.0.1"
+    "version": "3.0.0"
 }

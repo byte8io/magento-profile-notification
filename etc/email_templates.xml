@@ -25,4 +25,10 @@
               type="html"
               module="Byte8_ProfileNotification"
               area="adminhtml"/>
+    <template id="profile_notification_stock_drift"
+              label="Stock Physical-Drift Report"
+              file="stock-drift-report.html"
+              type="html"
+              module="Byte8_ProfileNotification"
+              area="adminhtml"/>
 </config>

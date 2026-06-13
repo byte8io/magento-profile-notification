@@ -53,4 +53,17 @@ interface SenderInterface
      * @return void
      */
     public function sendBatchNotification(array $notifications): void;
+
+    /**
+     * Send the stock physical-drift report.
+     *
+     * Pure transport: the caller decides whether to send (its own feature flag)
+     * and builds the template variables. Recipients fall back to the configured
+     * notification recipients when the override is empty.
+     *
+     * @param array $templateVars Prepared template variables.
+     * @param string[] $recipients Optional recipient override.
+     * @return void
+     */
+    public function sendStockDriftReport(array $templateVars, array $recipients = []): void;
 }
