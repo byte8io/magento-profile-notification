@@ -77,7 +77,7 @@ php bin/magento cache:flush
 The module includes three cron jobs that run automatically:
 
 1. **Cleanup Old Notifications** (`byte8_notification_cleanup`)
-   - Runs daily at 2:00 AM
+   - Runs daily at 2:32 AM
    - Removes notifications older than retention period
 
 2. **Send Batch Emails** (`byte8_notification_send_batch_emails`)

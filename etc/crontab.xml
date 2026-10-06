@@ -11,7 +11,7 @@
         <job name="byte8_notification_cleanup"
              instance="Byte8\ProfileNotification\Cron\CleanupOldNotifications"
              method="execute">
-            <schedule>0 2 * * *</schedule>
+            <schedule>32 2 * * *</schedule>
         </job>
         <job name="byte8_notification_send_batch_emails"
              instance="Byte8\ProfileNotification\Cron\SendBatchEmails"
