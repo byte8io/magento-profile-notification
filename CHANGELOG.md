@@ -13,6 +13,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.0.1] - 2026-11-16
+### Fixed
+- move notification cleanup cron off the 02:00 slot
+
 ## [3.0.0] - 2026-06-13
 ### BREAKING CHANGES
 - Rebrand SoftCommerce → Byte8: Composer vendor moved to `byte8/*`, PHP namespace root moved to `Byte8\`
